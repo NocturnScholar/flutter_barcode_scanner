@@ -89,7 +89,7 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
                             let alert = UIAlertController(title: "Action needed", message: "Please grant camera permission to use barcode scanner", preferredStyle: .alert)
                             
                             alert.addAction(UIAlertAction(title: "Grant", style: .default, handler: { action in
-                                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+                                UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!)
                             }))
                             
                             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
@@ -228,7 +228,7 @@ class BarcodeScannerViewController: UIViewController {
         let fillLayer = CAShapeLayer()
         
         fillLayer.path = overlayPath.cgPath
-        fillLayer.fillRule = CAShapeLayerFillRule.evenOdd
+//        fillLayer.fillRule = CAShapeLayerFillRule.evenOdd
         fillLayer.fillColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5).cgColor
         
         view.layer.addSublayer(videoPreviewLayer!)
@@ -247,14 +247,14 @@ class BarcodeScannerViewController: UIViewController {
         
         if let qrCodeFrameView = qrCodeFrameView {
             self.view.addSubview(qrCodeFrameView)
-            self.view.bringSubviewToFront(qrCodeFrameView)
+            self.view.bringSubview(toFront: qrCodeFrameView)
             qrCodeFrameView.layer.insertSublayer(fillLayer, below: videoPreviewLayer!)
-            self.view.bringSubviewToFront(bottomView)
-            self.view.bringSubviewToFront(flashIcon)
+            self.view.bringSubview(toFront: bottomView)
+            self.view.bringSubview(toFront: flashIcon)
             if(!SwiftFlutterBarcodeScannerPlugin.isShowFlashIcon){
                 flashIcon.isHidden=true
             }
-            self.view.bringSubviewToFront(cancelButton)
+            self.view.bringSubview(toFront: cancelButton)
         }
         self.drawLine()
     }
