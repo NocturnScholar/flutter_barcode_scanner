@@ -17,6 +17,6 @@ A new Flutter plugin supports barcode scanning on both Android and iOS.
   s.dependency 'Flutter'
 
   s.ios.deployment_target = '10.0'
-  s.swift_version = '3.2'
+  s.swift_version = '4.0'
 end
 
